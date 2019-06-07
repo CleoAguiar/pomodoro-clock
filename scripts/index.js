@@ -18,11 +18,24 @@ const Footer = () => {
         );
 };
 
+class TimerLengthControl extends React.Component
+{
+  render()
+  {
+    return e('div', {class: 'length-control'}, 
+            [e('div', {id: this.props.titleID}, this.props.title)]);
+  }
+};
+
+
 class App extends React.Component
 {
 	render()
 	{
-		return [e(Header), e(Footer)];
+		return [e(Header), 
+            e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length'}),
+            e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length'}),
+            e(Footer)];
 	}
 };
 
