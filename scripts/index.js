@@ -24,7 +24,8 @@ class TimerLengthControl extends React.Component
   {
     return e('div', {class: 'length-control'}, 
             [e('div', {id: this.props.titleID}, this.props.title),
-             e('button', {id: this.props.dec, oncliCk: this.props.oncliCk}, '-')]);
+             e('button', {id: this.props.dec, oncliCk: this.props.oncliCk}, '-'),
+             e('button', {id: this.props.inc, oncliCk: this.props.oncliCk}, '+')]);
   }
 };
 
@@ -34,8 +35,8 @@ class App extends React.Component
 	render()
 	{
 		return [e(Header), 
-            e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length', dec: 'break-decrement'}),
-            e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length', dec: 'session-decrement'}),
+            e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length', dec: 'break-decrement', inc: 'break-increment'}),
+            e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length', dec: 'session-decrement', inc: 'session-increment'}),
             e(Footer)];
 	}
 };
