@@ -33,10 +33,31 @@ class TimerLengthControl extends React.Component
 
 class Timer extends React.Component
 {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      timer: 1500
+    }
+
+    this.clock = this.clock.bind(this);
+  }
+
+  clock()
+  {
+    let min = Math.floor(this.state.timer / 60);
+    let sec = this.state.timer - min * 60;
+    sec = sec < 10 ? '0' + sec : sec;
+    min = min < 10 ? '0' + min : min;
+
+    return min + ':' + sec;
+  }
+
   render()
   {
     return e('div', {class: 'timer'},
-            [e('div', {class: 'timer-label'}, this.props.timeType)])
+            [e('div', {class: 'timer-label'}, this.props.timeType),
+             e('div', {class: 'time-left'}, this.clock() )])
   }
 }
 
