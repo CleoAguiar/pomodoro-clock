@@ -31,6 +31,16 @@ class TimerLengthControl extends React.Component
 };
 
 
+class Timer extends React.Component
+{
+  render()
+  {
+    return e('div', {class: 'timer'},
+            [e('div', {class: 'timer-label'}, this.props.timeType)])
+  }
+}
+
+
 class App extends React.Component
 {
   constructor(props)
@@ -39,6 +49,7 @@ class App extends React.Component
     this.state = {
       breakLength: 5,
       sessionLength: 25,
+      timeType: 'Session',
     }
   }
 
@@ -47,6 +58,7 @@ class App extends React.Component
 		return [e(Header), 
             e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length', dec: 'break-decrement', inc: 'break-increment', lengthID: 'break-length' , length: this.state.breakLength}),
             e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length', dec: 'session-decrement', inc: 'session-increment', lengthID: 'session-length', length: this.state.sessionLength}),
+            e(Timer, {timeType: this.state.timeType}),
             e(Footer)];
 	}
 };
