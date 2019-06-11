@@ -24,23 +24,26 @@ class TimerLengthControl extends React.Component
   {
     return e('div', {class: 'length-control'}, 
             [e('div', {id: this.props.titleID}, this.props.title),
-             e('button', {id: this.props.dec, oncliCk: this.props.oncliCk}, '-'),
+             e('button', {id: this.props.dec, onClick: this.props.onClick}, '-'),
              e('div', {id: this.props.lengthID}, this.props.length),
-             e('button', {id: this.props.inc, oncliCk: this.props.oncliCk}, '+')]);
+             e('button', {id: this.props.inc, onClick: this.props.onClick}, '+')]);
   }
 };
 
-
-class Timer extends React.Component
+class App extends React.Component
 {
   constructor(props)
   {
     super(props);
     this.state = {
+      breakLength: 5,
+      sessionLength: 25,
+      timeType: 'Session',
       timer: 1500
     }
 
     this.clock = this.clock.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   clock()
@@ -53,30 +56,14 @@ class Timer extends React.Component
     return min + ':' + sec;
   }
 
-  render()
+  reset()
   {
-    return e('div', {class: 'timer'},
-            [e('div', {class: 'timer-label'}, this.props.timeType),
-             e('div', {class: 'time-left'}, this.clock()),
-             e('div', {class: 'time-control'}, 
-              [e('button', {class: 'start_stop'}, 'start/stop'),
-               e('button', {class: 'reset'}, 'reset')
-              ])
-            ])
-  }
-}
-
-
-class App extends React.Component
-{
-  constructor(props)
-  {
-    super(props);
-    this.state = {
+    this.setState ({
       breakLength: 5,
       sessionLength: 25,
       timeType: 'Session',
-    }
+      timer: 1500
+    });
   }
 
 	render()
@@ -84,7 +71,14 @@ class App extends React.Component
 		return [e(Header), 
             e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length', dec: 'break-decrement', inc: 'break-increment', lengthID: 'break-length' , length: this.state.breakLength}),
             e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length', dec: 'session-decrement', inc: 'session-increment', lengthID: 'session-length', length: this.state.sessionLength}),
-            e(Timer, {timeType: this.state.timeType}),
+            e('div', {class: 'timer'},
+              [e('div', {class: 'timer-label'}, this.state.timeType),
+               e('div', {class: 'time-left'}, this.clock()),
+               e('div', {class: 'time-control'}, 
+                [e('button', {class: 'start_stop'}, 'start/stop'),
+                 e('button', {class: 'reset', onClick: this.reset }, 'reset')
+                ])
+              ]),
             e(Footer)];
 	}
 };
