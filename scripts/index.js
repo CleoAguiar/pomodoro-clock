@@ -57,7 +57,12 @@ class Timer extends React.Component
   {
     return e('div', {class: 'timer'},
             [e('div', {class: 'timer-label'}, this.props.timeType),
-             e('div', {class: 'time-left'}, this.clock() )])
+             e('div', {class: 'time-left'}, this.clock()),
+             e('div', {class: 'time-control'}, 
+              [e('button', {class: 'start_stop'}, 'start/stop'),
+               e('button', {class: 'reset'}, 'reset')
+              ])
+            ])
   }
 }
 
