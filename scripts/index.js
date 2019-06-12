@@ -70,12 +70,20 @@ class App extends React.Component
 
   setBreakLength(event)
   {
-    console.log(event.currentTarget.value);
+    event.currentTarget.value == '-' ?
+      this.state.breakLength >= 1 ?
+        this.setState({ breakLength : this.state.breakLength - 1 })
+        : this.setState({ breakLength : 0 })
+    : console.log("somar state break");
   }
 
   setSessionLength(event)
   {
-    console.log(event.currentTarget.value);
+    event.currentTarget.value == '-' ?
+      this.state.sessionLength >= 1 ?
+        this.setState({ sessionLength : this.state.sessionLength - 1 })
+        : this.setState({ sessionLength : 0 })
+    : console.log(event.currentTarget.value);
   }
 
 	render()
