@@ -74,7 +74,9 @@ class App extends React.Component
       this.state.breakLength >= 1 ?
         this.setState({ breakLength : this.state.breakLength - 1 })
         : this.setState({ breakLength : 0 })
-    : console.log("somar state break");
+    : this.state.breakLength < 60 ?
+        this.setState({ breakLength: this.state.breakLength + 1 })
+        : this.setState({ breakLength: 60 })
   }
 
   setSessionLength(event)
@@ -83,7 +85,9 @@ class App extends React.Component
       this.state.sessionLength >= 1 ?
         this.setState({ sessionLength : this.state.sessionLength - 1 })
         : this.setState({ sessionLength : 0 })
-    : console.log(event.currentTarget.value);
+    : this.state.sessionLength < 60 ?
+        this.setState({ sessionLength: this.state.sessionLength + 1 })
+        : this.setState({ sessionLength: 60 })
   }
 
 	render()
