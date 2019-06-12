@@ -24,9 +24,9 @@ class TimerLengthControl extends React.Component
   {
     return e('div', {class: 'length-control'}, 
             [e('div', {id: this.props.titleID}, this.props.title),
-             e('button', {id: this.props.dec, onClick: this.props.onClick}, '-'),
+             e('button', {id: this.props.dec, onClick: this.props.onClick, value: '-'}, '-'),
              e('div', {id: this.props.lengthID}, this.props.length),
-             e('button', {id: this.props.inc, onClick: this.props.onClick}, '+')]);
+             e('button', {id: this.props.inc, onClick: this.props.onClick, value: '+'}, '+')]);
   }
 };
 
@@ -44,6 +44,8 @@ class App extends React.Component
 
     this.clock = this.clock.bind(this);
     this.reset = this.reset.bind(this);
+    this.setBreakLength = this.setBreakLength.bind(this);
+    this.setSessionLength = this.setSessionLength.bind(this);
   }
 
   clock()
@@ -66,11 +68,21 @@ class App extends React.Component
     });
   }
 
+  setBreakLength(event)
+  {
+    console.log(event.currentTarget.value);
+  }
+
+  setSessionLength(event)
+  {
+    console.log(event.currentTarget.value);
+  }
+
 	render()
 	{
 		return [e(Header), 
-            e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length', dec: 'break-decrement', inc: 'break-increment', lengthID: 'break-length' , length: this.state.breakLength}),
-            e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length', dec: 'session-decrement', inc: 'session-increment', lengthID: 'session-length', length: this.state.sessionLength}),
+            e(TimerLengthControl, {titleID: 'break-label', title: 'Break Length', dec: 'break-decrement', inc: 'break-increment', lengthID: 'break-length' , length: this.state.breakLength, onClick: this.setBreakLength }),
+            e(TimerLengthControl, {titleID: 'session-label', title: 'Session Length', dec: 'session-decrement', inc: 'session-increment', lengthID: 'session-length', length: this.state.sessionLength, onClick: this.setSessionLength }),
             e('div', {class: 'timer'},
               [e('div', {class: 'timer-label'}, this.state.timeType),
                e('div', {class: 'time-left'}, this.clock()),
