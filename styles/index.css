@@ -4,6 +4,9 @@ body {
 }
 
 .length-control {
-	text-align: center;
 	display: inline-block;
+}
+
+#app {
+	text-align: center;
 }
