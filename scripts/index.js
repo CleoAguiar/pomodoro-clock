@@ -23,9 +23,9 @@ class TimerLengthControl extends React.Component
   {
     return e('div', {class: 'length-control'}, 
             [e('div', {id: this.props.titleID}, this.props.title),
-             e('button', {id: this.props.dec, onClick: this.props.onClick, value: '-'}, e('i', {class: 'material-icons md-36'}, 'keyboard_arrow_up')),
+             e('button', {id: this.props.inc, onClick: this.props.onClick, value: '+'}, e('i', {class: 'material-icons'}, 'keyboard_arrow_up')),
              e('div', {id: this.props.lengthID}, this.props.length),
-             e('button', {id: this.props.inc, onClick: this.props.onClick, value: '+'},  e('i', {class: 'material-icons md-36'}, 'keyboard_arrow_down'))]);
+             e('button', {id: this.props.dec, onClick: this.props.onClick, value: '-'},  e('i', {class: 'material-icons'}, 'keyboard_arrow_down'))]);
   }
 };
 

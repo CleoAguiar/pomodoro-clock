@@ -25,7 +25,8 @@ body {
 
 button {
 	color: #FFF;
-	font-size: 20px;
+	padding: 0;
+	border: 2px solid black;
 	background: none;
 	border: none;
 	opacity: 0.5;
@@ -36,6 +37,8 @@ button {
 button:hover {
 	opacity: 1;
 }
+
+
 
 .timer {
 	font-size: 2em;
