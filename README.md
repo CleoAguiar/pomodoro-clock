@@ -1,5 +1,5 @@
 # pomodoro-clock
-Fifth Front End Project FreeCodeCamp
+This page is my Fifth Front End Project FreeCodeCamp using React
 
 ## User Story
 User Story #1: I can see an element with id="break-label" that contains a string (e.g. "Break Length").
