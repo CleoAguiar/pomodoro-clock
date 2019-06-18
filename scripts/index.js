@@ -4,8 +4,7 @@ const e = React.createElement;
 
 const Header = () => {
     return e('div', { class: 'header' },
-            [e('h2',null, 'Welcome to my React Pomodoro Clock!'),
-            e('p', null, 'This page is my Fifth Front End Project FreeCodeCamp using React')]
+            e('h2',null, 'React Pomodoro Clock'),
             );
 };
 
