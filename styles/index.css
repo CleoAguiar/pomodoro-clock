@@ -24,6 +24,23 @@ body {
 	font-weight: bold;
 }
 
+.length-control button {
+	background: #e7e7e7;
+	color: #000;
+	padding: 0 20px;
+	border-radius: 20px;
+	font-size: 20px;
+	border: none;
+	opacity: 0.5;
+	transition: 0.3s;
+	cursor: pointer;
+
+}
+
+.length-control button:hover {
+	opacity: 1;
+}
+
 .timer {
 	font-size: 2em;
 }
