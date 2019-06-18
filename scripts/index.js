@@ -23,9 +23,9 @@ class TimerLengthControl extends React.Component
   {
     return e('div', {class: 'length-control'}, 
             [e('div', {id: this.props.titleID}, this.props.title),
-             e('button', {id: this.props.dec, onClick: this.props.onClick, value: '-'}, '-'),
+             e('button', {id: this.props.dec, onClick: this.props.onClick, value: '-'}, e('i', {class: 'material-icons md-36'}, 'keyboard_arrow_up')),
              e('div', {id: this.props.lengthID}, this.props.length),
-             e('button', {id: this.props.inc, onClick: this.props.onClick, value: '+'}, '+')]);
+             e('button', {id: this.props.inc, onClick: this.props.onClick, value: '+'},  e('i', {class: 'material-icons md-36'}, 'keyboard_arrow_down'))]);
   }
 };
 
@@ -98,8 +98,8 @@ class App extends React.Component
               [e('div', {class: 'timer-label'}, this.state.timeType),
                e('div', {class: 'time-left'}, this.clock()),
                e('div', {class: 'time-control'}, 
-                [e('button', {class: 'start_stop'}, 'start/stop'),
-                 e('button', {class: 'reset', onClick: this.reset }, 'reset')
+                [e('button', {class: 'start_stop'}, e('i', {class: 'material-icons'}, 'play_circle_outline')),
+                 e('button', {class: 'reset', onClick: this.reset }, e('i', {class: 'material-icons'}, 'loop'))
                 ])
               ]),
             e(Footer)];
