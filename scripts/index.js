@@ -38,13 +38,15 @@ class App extends React.Component
       breakLength: 5,
       sessionLength: 25,
       timeType: 'Session',
-      timer: 1500
+      timer: 1500,
+      timerState: 'stopped'
     }
 
     this.clock = this.clock.bind(this);
     this.reset = this.reset.bind(this);
     this.setBreakLength = this.setBreakLength.bind(this);
     this.setSessionLength = this.setSessionLength.bind(this);
+    this.timerControl = this.timerControl.bind(this);
   }
 
   clock()
@@ -63,7 +65,8 @@ class App extends React.Component
       breakLength: 5,
       sessionLength: 25,
       timeType: 'Session',
-      timer: 1500
+      timer: 1500,
+      timerState: 'stopped'
     });
   }
 
@@ -95,6 +98,16 @@ class App extends React.Component
         : this.setState({ sessionLength: 60 })
   }
 
+  timerControl() {
+    this.state.timerState === 'stopped' ?
+      this.setState({
+        timerState: 'running'
+      })
+    : this.setState({
+      timerState: 'stopped'
+    })
+  }
+
 	render()
 	{
 		return [e(Header), 
@@ -104,7 +117,7 @@ class App extends React.Component
               [e('div', {class: 'timer-label'}, this.state.timeType),
                e('div', {class: 'time-left'}, this.clock()),
                e('div', {class: 'time-control'}, 
-                [e('button', {class: 'start_stop'}, e('i', {class: 'material-icons'}, 'play_circle_outline')),
+                [e('button', {class: 'start_stop', onClick: this.timerControl }, e('i', {class: 'material-icons'}, this.state.timerState === 'stopped' ? 'play_circle_outline' : 'stop')),
                  e('button', {class: 'reset', onClick: this.reset }, e('i', {class: 'material-icons'}, 'loop'))
                 ])
               ]),
