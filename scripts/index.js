@@ -82,10 +82,16 @@ class App extends React.Component
   {
     event.currentTarget.value == '-' ?
       this.state.sessionLength >= 1 ?
-        this.setState({ sessionLength : this.state.sessionLength - 1 })
+        this.setState({ 
+          sessionLength : this.state.sessionLength - 1,
+          timer: this.state.sessionLength * 60 - 60
+          })
         : this.setState({ sessionLength : 0 })
     : this.state.sessionLength < 60 ?
-        this.setState({ sessionLength: this.state.sessionLength + 1 })
+        this.setState({ 
+          sessionLength: this.state.sessionLength + 1,
+          timer: this.state.sessionLength * 60 + 60
+        })
         : this.setState({ sessionLength: 60 })
   }
 
