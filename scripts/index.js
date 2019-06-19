@@ -49,6 +49,7 @@ class App extends React.Component
     this.setSessionLength = this.setSessionLength.bind(this);
     this.timerControl = this.timerControl.bind(this);
     this.countDown = this.countDown.bind(this);
+    this.timeTypeControl = this.timeTypeControl.bind(this);
   }
 
   clock()
@@ -120,11 +121,24 @@ class App extends React.Component
   countDown() {
     this.setState({
       timeInterval: setInterval(() => {
+        this.timeTypeControl();
         this.setState({
           timer: this.state.timer - 1
         })
       }, 1000) 
-    })    
+    })
+  }
+
+  timeTypeControl() {
+    let timer = this.state.timer;
+    let timeType = this.state.timeType;
+
+    if(timer < 0){
+      timeType === 'Session' ?
+        console.log('s')
+      :
+      console.log('d')
+    }
   }
 
 	render()
