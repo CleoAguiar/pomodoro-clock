@@ -47,6 +47,7 @@ class App extends React.Component
     this.setBreakLength = this.setBreakLength.bind(this);
     this.setSessionLength = this.setSessionLength.bind(this);
     this.timerControl = this.timerControl.bind(this);
+    this.countDown = this.countDown.bind(this);
   }
 
   clock()
@@ -100,12 +101,23 @@ class App extends React.Component
 
   timerControl() {
     this.state.timerState === 'stopped' ?
-      this.setState({
-        timerState: 'running'
-      })
+      (
+        this.countDown(),
+        this.setState({
+          timerState: 'running'
+        })
+      )
     : this.setState({
       timerState: 'stopped'
     })
+  }
+
+  countDown() {
+    setInterval(() => {
+      this.setState({
+        timer: this.state.timer - 1
+      })
+    }, 1000); 
   }
 
 	render()
