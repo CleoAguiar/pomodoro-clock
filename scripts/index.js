@@ -39,7 +39,8 @@ class App extends React.Component
       sessionLength: 25,
       timeType: 'Session',
       timer: 1500,
-      timerState: 'stopped'
+      timerState: 'stopped',
+      timeInterval: ''
     }
 
     this.clock = this.clock.bind(this);
@@ -67,7 +68,8 @@ class App extends React.Component
       sessionLength: 25,
       timeType: 'Session',
       timer: 1500,
-      timerState: 'stopped'
+      timerState: 'stopped',
+      timeInterval: ''
     });
   }
 
@@ -107,17 +109,22 @@ class App extends React.Component
           timerState: 'running'
         })
       )
-    : this.setState({
-      timerState: 'stopped'
-    })
+    : (
+        clearInterval(this.state.timeInterval),
+        this.setState({
+          timerState: 'stopped'
+        })
+      )
   }
 
   countDown() {
-    setInterval(() => {
-      this.setState({
-        timer: this.state.timer - 1
-      })
-    }, 1000); 
+    this.setState({
+      timeInterval: setInterval(() => {
+        this.setState({
+          timer: this.state.timer - 1
+        })
+      }, 1000) 
+    })    
   }
 
 	render()
