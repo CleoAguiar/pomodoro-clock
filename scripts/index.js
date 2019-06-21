@@ -133,11 +133,17 @@ class App extends React.Component
     let timer = this.state.timer;
     let timeType = this.state.timeType;
 
-    if(timer < 0){
+    if(timer === 0){
       timeType === 'Session' ?
-        console.log('s')
+        this.setState({
+          timeType: 'Break',
+          timer: this.state.breakLength * 60
+        })
       :
-      console.log('d')
+      this.setState({
+        timeType: 'Session',
+        timer: this.state.sessionLength * 60
+      })
     }
   }
 
