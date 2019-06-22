@@ -81,9 +81,9 @@ class App extends React.Component
   setBreakLength(event)
   {
     event.currentTarget.value == '-' ?
-      this.state.breakLength >= 1 ?
+      this.state.breakLength > 1 ?
         this.setState({ breakLength : this.state.breakLength - 1 })
-        : this.setState({ breakLength : 0 })
+        : this.setState({ breakLength : 1 })
     : this.state.breakLength < 60 ?
         this.setState({ breakLength: this.state.breakLength + 1 })
         : this.setState({ breakLength: 60 })
@@ -92,12 +92,12 @@ class App extends React.Component
   setSessionLength(event)
   {
     event.currentTarget.value == '-' ?
-      this.state.sessionLength >= 1 ?
+      this.state.sessionLength > 1 ?
         this.setState({ 
           sessionLength : this.state.sessionLength - 1,
           timer: this.state.sessionLength * 60 - 60
           })
-        : this.setState({ sessionLength : 0 })
+        : this.setState({ sessionLength : 1 })
     : this.state.sessionLength < 60 ?
         this.setState({ 
           sessionLength: this.state.sessionLength + 1,
