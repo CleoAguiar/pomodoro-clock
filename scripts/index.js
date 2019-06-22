@@ -169,7 +169,9 @@ class App extends React.Component
                 [e('button', {class: 'start_stop', onClick: this.timerControl }, e('i', {class: 'material-icons'}, this.state.timerState === 'stopped' ? 'play_circle_outline' : 'stop')),
                  e('button', {class: 'reset', onClick: this.reset }, e('i', {class: 'material-icons'}, 'loop'))
                 ]),
-                e('audio', {id: 'beep', src: 'https://bit.ly/2ZGWSfx', type: 'audio/ogg', preload: 'auto', controls: 'controls', ref: (audio) => { this. audioBeep = audio }})
+                e('audio', {id: 'beep', preload: 'auto', ref: (audio) => { this. audioBeep = audio }}, 
+                  [e('source', {src: 'https://bit.ly/2N6JAYB', type: 'audio/ogg'}),
+                   e('source', {src: 'http://bit.ly/2ZGWSfx', type: 'audio/wav'}),])
               ]),
             e(Footer)];
 	}
