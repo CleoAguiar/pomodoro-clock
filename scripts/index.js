@@ -50,6 +50,7 @@ class App extends React.Component
     this.timerControl = this.timerControl.bind(this);
     this.countDown = this.countDown.bind(this);
     this.timeTypeControl = this.timeTypeControl.bind(this);
+    this.beep = this.beep.bind(this);
   }
 
   clock()
@@ -72,6 +73,9 @@ class App extends React.Component
       timerState: 'stopped',
       timeInterval: ''
     });
+    clearInterval(this.state.timeInterval);
+    this.audioBeep.pause();
+    this.audioBeep.currentTime = 0;
   }
 
   setBreakLength(event)
@@ -134,6 +138,7 @@ class App extends React.Component
     let timeType = this.state.timeType;
 
     if(timer === 0){
+      this.beep();
       timeType === 'Session' ?
         this.setState({
           timeType: 'Break',
@@ -145,6 +150,11 @@ class App extends React.Component
         timer: this.state.sessionLength * 60
       })
     }
+  }
+
+  beep()
+  {
+    this.audioBeep.play();
   }
 
 	render()
@@ -159,7 +169,7 @@ class App extends React.Component
                 [e('button', {class: 'start_stop', onClick: this.timerControl }, e('i', {class: 'material-icons'}, this.state.timerState === 'stopped' ? 'play_circle_outline' : 'stop')),
                  e('button', {class: 'reset', onClick: this.reset }, e('i', {class: 'material-icons'}, 'loop'))
                 ]),
-                e('audio', {id: 'beep', src: 'https://bit.ly/2ZGWSfx', type: 'audio/ogg', autoplay: 'autoplay', controls: 'controls', ref: (audio) => { this. audioBeep = audio }})
+                e('audio', {id: 'beep', src: 'https://bit.ly/2ZGWSfx', type: 'audio/ogg', preload: 'auto', controls: 'controls', ref: (audio) => { this. audioBeep = audio }})
               ]),
             e(Footer)];
 	}
